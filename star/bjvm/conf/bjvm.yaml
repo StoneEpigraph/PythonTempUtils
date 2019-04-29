@@ -1,0 +1,6 @@
+database:
+  db_host: "192.168.200.9"
+  db_port: !!str 1521
+  db_name: "ORCL11G"
+  db_username: "BJVMMIS"
+  db_password: "BJVMMIS_E8U4VN67"
