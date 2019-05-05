@@ -23,6 +23,11 @@ class OracleDbUtil:
         cursor = conn.cursor()
         return cursor.execute(sql, params).fetchall()
 
+    def get_one(self, sql, params={}):
+        conn = self.get_conn()
+        cursor = conn.cursor()
+        return cursor.execute(sql, params).fetchone()
+
 
 
 if __name__ == '__main__':

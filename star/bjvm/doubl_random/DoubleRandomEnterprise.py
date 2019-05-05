@@ -52,17 +52,17 @@ def export_check_result(result_list, year):
             sheet['C1'] = "检查时间"
             sheet['D1'] = "检查人"
             sheet['E1'] = "检查结果"
-            for i, obj in enumerate(result):
+            for line, obj in enumerate(result):
                 enterprise_name = obj[0]
                 region = obj[1]
                 check_time = obj[2]
                 check_person = obj[3]
                 check_result = obj[4]
-                sheet['A' + str(i + 2)] = enterprise_name
-                sheet['B' + str(i + 2)] = region
-                sheet['C' + str(i + 2)] = check_time
-                sheet['D' + str(i + 2)] = check_person
-                sheet['E' + str(i + 2)] = check_result
+                sheet['A' + str(line + 2)] = enterprise_name
+                sheet['B' + str(line + 2)] = region
+                sheet['C' + str(line + 2)] = check_time
+                sheet['D' + str(line + 2)] = check_person
+                sheet['E' + str(line + 2)] = check_result
     wb.save(str(year) + "年双随机检查纪录.xlsx")
 
 
