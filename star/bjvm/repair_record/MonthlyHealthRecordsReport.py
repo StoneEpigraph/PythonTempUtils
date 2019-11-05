@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# coding: utf-8
+# coding:utf-8
 
 from docxtpl import DocxTemplate
 import time
@@ -60,6 +60,8 @@ def get_spec_enterprise_count(spec_repair_type):
     params = {
         "spec_repair_type": spec_repair_type
     }
+    print(sql)
+    print(params)
     res = dbUtils.get_one(sql, params)
     return res[0]
 
@@ -84,7 +86,7 @@ if __name__ == '__main__':
     second_class_name = "二类"
     third_class_name = "三类"
     year = "2019"
-    month = "04"
+    month = "10"
     curr_year = time.strftime('%Y', time.localtime(time.time()))
     curr_month = time.strftime('%m', time.localtime(time.time()))
     curr_day = time.strftime('%d', time.localtime(time.time()))

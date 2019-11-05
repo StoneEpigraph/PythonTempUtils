@@ -11,6 +11,9 @@ cx-oracle = "*"
 pyyaml = "*"
 openpyxl = "*"
 docxtpl = "*"
+selenium = "*"
+beautifulsoup4 = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
