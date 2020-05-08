@@ -24,9 +24,12 @@ class OracleDbUtil:
         return cursor.execute(sql, params).fetchall()
 
     def get_one(self, sql, params={}):
+        import os
+        os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
         conn = self.get_conn()
         cursor = conn.cursor()
         return cursor.execute(sql, params).fetchone()
+
 
 
 
