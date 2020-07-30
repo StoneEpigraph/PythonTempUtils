@@ -73,8 +73,7 @@ if __name__ == '__main__':
                             cityList.append(
                                 {
                                     "value": code,  # 省直辖县
-                                    "label": name,
-                                    "children": []
+                                    "label": name
                                 }
                             )
                             num += 1
@@ -93,8 +92,8 @@ if __name__ == '__main__':
                             cityName = city['label']
                             if str(int(code) // 100 * 100) == str(cityCode):
                                 countyObj = {
-                                    "code": code,
-                                    "name": name,
+                                    "value": code,
+                                    "label": name,
                                 }
                                 countyList = city['children']
                                 num += 1
@@ -118,7 +117,7 @@ if __name__ == '__main__':
     print(num)
     print(count)
     print(len(areaSqlList))
-    writefile("region.json", res)
+    writefile("regionsThreeLevel.json", res)
 
     # 写sql
     f = open("tbccArea.sql", "w+")
