@@ -49,9 +49,10 @@ if __name__ == '__main__':
                             "label": name,
                             "children": []
                         }
-                        num += 1
+
                         cityList.append(cityObj)
                         cityCodeArr.append(code)
+                        num += 1
                         areaSqlList.append(
                             "insert into tbcc_area(code, name, level, parent_code, short_name, all_name, status) values({value}, '{label}', 1, {provinceCode}, '{label}', '{fullName}', 1);".format(
                                 **{
@@ -70,12 +71,24 @@ if __name__ == '__main__':
                         cityList = province['children']
                         if cityCode not in cityCodeArr:
                             # 如果找不到父级直接找省级,将直辖县挂到省级下边
-                            cityList.append(
-                                {
-                                    "value": code,  # 省直辖县
-                                    "label": name
-                                }
-                            )
+                            if name.endswith('区') and not name.endswith('地区'):
+                                # 判断区县级是否有市区Code
+                                for city in cityList:
+                                    cityCode = city['value']
+                                    if cityCode == provinceCode:
+                                        break
+                                else:
+                                    cityList.append({
+                                        "value": provinceCode,
+                                        "label": provinceName + "区"
+                                    })
+                            else:
+                                cityList.append(
+                                    {
+                                        "value": code,  # 省直辖县
+                                        "label": name
+                                    }
+                                )
                             num += 1
                             areaSqlList.append(
                             "insert into tbcc_area(code, name, level, parent_code, short_name, all_name, status) values({value}, '{label}', 1, {provinceCode}, '{label}', '{fullName}', 1);".format(
@@ -85,7 +98,6 @@ if __name__ == '__main__':
                                     "provinceCode": provinceCode,
                                     "fullName": provinceName + "-" + name
                                 }))
-                            # cityCodeArr.append(cityCode)
                             break
                         for city in cityList:
                             cityCode = city['value']
@@ -96,8 +108,21 @@ if __name__ == '__main__':
                                     "label": name,
                                 }
                                 countyList = city['children']
+                                if (name.endswith('区') and not name.endswith('地区')):
+                                    # 判断区县级是否有市区
+                                    for county in countyList:
+                                        countyCode = county['value']
+                                        if countyCode == cityCode:
+
+                                            break
+                                    else:
+                                        countyList.append({
+                                            "value": cityCode,
+                                            "label": cityName + "区"
+                                        })
+                                else:
+                                    countyList.append(countyObj)
                                 num += 1
-                                countyList.append(countyObj)
 
                                 areaSqlList.append(
                                     "insert into tbcc_area(code, name, level, parent_code, short_name, all_name, status) values({value}, '{label}', 2, {provinceCode}, '{label}', '{fullName}', 1);".format(
@@ -113,6 +138,20 @@ if __name__ == '__main__':
             num += 1
         line = file.readline()
     file.close()
+
+    # 去除空的children
+    for province in res:
+        # 去掉空的省
+        provinceChildrenList = province['children']
+        if len(provinceChildrenList) < 1:
+            del province['children']
+        else:
+            for city in provinceChildrenList:
+                if 'children' in city.keys():
+                    cityChildrenList = city['children']
+                    if len(cityChildrenList) < 1:
+                        del city['children']
+
     print({"region": res})
     print(num)
     print(count)
