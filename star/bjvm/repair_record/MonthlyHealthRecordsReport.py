@@ -86,13 +86,17 @@ if __name__ == '__main__':
     second_class_name = "二类"
     third_class_name = "三类"
     year = "2020"
-    month = "04"
+    month = "09"
     curr_year = time.strftime('%Y', time.localtime(time.time()))
     curr_month = time.strftime('%m', time.localtime(time.time()))
     curr_day = time.strftime('%d', time.localtime(time.time()))
     region_count = 16
     start_date_str = year + (month if int(month) >= 10 else '0' + str(int(month))) + '01'
-    end_date_str = year + (str(int(month) + 1) if int(month) + 1 >= 10 else '0' + str(int(month) + 1)) + "01"
+    if int(month) == 12:
+        end_date_str = str(int(year) + 1) + "0101"
+    else:
+        end_date_str = year + (str(int(month) + 1) if int(month) + 1 >= 10 else '0' + str(int(month) + 1)) + "01"
+    print(end_date_str)
     current_enterprise_count = get_current_enterprise_count(start_date_str, end_date_str)
     current_repair_count = get_current_repair_count(start_date_str, end_date_str)
     total_enterprise_count = get_total_enterprise_count()
