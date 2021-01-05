@@ -86,7 +86,7 @@ if __name__ == '__main__':
     second_class_name = "二类"
     third_class_name = "三类"
     year = "2020"
-    month = "09"
+    month = "12"
     curr_year = time.strftime('%Y', time.localtime(time.time()))
     curr_month = time.strftime('%m', time.localtime(time.time()))
     curr_day = time.strftime('%d', time.localtime(time.time()))

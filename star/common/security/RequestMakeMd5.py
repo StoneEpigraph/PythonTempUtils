@@ -7,15 +7,15 @@ if __name__ == '__main__':
     requestStr = '''
 {
     "request_head": {
-        "timestamp": 1608798505000,
+        "timestamp": 1609753570000,
         "version": "V1.0",
-        "token": "0f224c54-6d9d-485f-b011-00d83f8d8ce2",
-        "sign": "D916D9FCB663AB4A419B62D20A2513AE"
+        "token": "a4d0fb1b-858d-40a2-8ffd-33762c8adec5",
+        "sign": "82A7B36889A8F8604D83852CDC25B519"
 
     },
     "request_body": {
-        "vehicle_no": "京B25306",
-        "plate_color": "2"
+        "start_time": "2020-12-25 00:00:00",
+        "end_time": "2021-01-04 00:00:00"
     }
 }
     '''
