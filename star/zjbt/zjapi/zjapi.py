@@ -7,33 +7,20 @@ import hashlib
 if __name__ == '__main__':
 
     jsonStr = '''
-        {
-            "request_head": {
-                "version": "1.0",
-                "token": "163a14ab-cfe5-450a-bda8-c064304c8ead",
-                "timestamp": 1605601382000,
-                "sign": "6D78C94CEE4C484C13E6229951C5D8FA"
-            },
-            "request_body": {
-                "vehicleNo": "京B21838",
-                "vehicleColor": "2"
-            }
-        }
-    '''
+{
+    "request_head": {
+        "version": "1.0",
+        "token": "592df0dc-0e62-44c5-9533-85c4a6c124c4",
+        "timestamp": 1612686199000,
+ 		  "sign": "E01B02740BA0C1553E95B635091941CC"
 
-    # jsonStr = '''
-    #     {
-    #         "request_head": {
-    #             "version": "1.0",
-    #             "token": "c63fd532ee4e11eaa73edb9cebfddf38",
-    #             "timestamp": 1599183222000
-    #         },
-    #         "request_body": {
-    #             "user_name": "username",
-    #             "passwd": "passwd"
-    #         }
-    #     }
-    # '''
+    },
+    "request_body": {
+        "vehicleNo": "京AEE635",
+        "vehicleColor": "2"
+    }
+}
+    '''
     jsonObj = json.loads(jsonStr)
     requestHead = jsonObj['request_head']
     requestBody = jsonObj['request_body']

@@ -57,7 +57,8 @@ def get_spec_enterprise_count(spec_repair_type):
         left join tc_all_dict d on ver.enterprise_type = d.code_value
         where ver.com_status = '1' and d.code_name like '%'|| :spec_repair_type ||'%'
     '''
-    params = {
+    params = {on
+    
         "spec_repair_type": spec_repair_type
     }
     print(sql)
@@ -85,8 +86,8 @@ if __name__ == '__main__':
     first_class_name = "一类"
     second_class_name = "二类"
     third_class_name = "三类"
-    year = "2020"
-    month = "12"
+    year = "2021"
+    month = "01"
     curr_year = time.strftime('%Y', time.localtime(time.time()))
     curr_month = time.strftime('%m', time.localtime(time.time()))
     curr_day = time.strftime('%d', time.localtime(time.time()))
