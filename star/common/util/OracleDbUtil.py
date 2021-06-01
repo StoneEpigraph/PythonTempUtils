@@ -30,6 +30,14 @@ class OracleDbUtil:
         cursor = conn.cursor()
         return cursor.execute(sql, params).fetchone()
 
+    def update(self, sql, params={}):
+        import os
+        os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
+        conn = self.get_conn()
+        cursor = conn.cursor()
+        res = cursor.execute(sql, params)
+        conn.commit()
+        return res
 
 
 
