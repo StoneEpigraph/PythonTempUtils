@@ -7,15 +7,14 @@ if __name__ == '__main__':
     requestStr = '''
 {
     "request_head": {
-        "timestamp": 1609753570000,
+        "timestamp": 1623391030086,
         "version": "V1.0",
-        "token": "a4d0fb1b-858d-40a2-8ffd-33762c8adec5",
-        "sign": "82A7B36889A8F8604D83852CDC25B519"
+        "token": "EF1FC153-4350-440F-99B2-81DF4021D098",
+        "sign": "340BFBA6FB7AD954AAC7453948106629"
 
     },
     "request_body": {
-        "start_time": "2020-12-25 00:00:00",
-        "end_time": "2021-01-04 00:00:00"
+        "order_no": "310421060220222590"
     }
 }
     '''

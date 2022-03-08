@@ -7,7 +7,7 @@ import yaml
 
 from star.common.util.OracleDbUtil import OracleDbUtil
 
-resource = yaml.load(open('../conf/bjvm.yaml'))
+resource = yaml.load(open('../conf/bjvm.yaml'), Loader=yaml.FullLoader)
 db_host = resource['database']['db_host']
 db_name = resource['database']['db_name']
 db_username = resource['database']['db_username']
@@ -37,6 +37,7 @@ def get_current_repair_count(start_date_star, end_date_str):
     }
     res = dbUtils.get_one(sql, params)
     return res[0]
+
 
 # 获取所有上报维修数据的企业数
 def get_total_enterprise_count():
@@ -85,8 +86,8 @@ if __name__ == '__main__':
     first_class_name = "一类"
     second_class_name = "二类"
     third_class_name = "三类"
-    year = "2021"
-    month = "04"
+    year = "2022"
+    month = "02"
     curr_year = time.strftime('%Y', time.localtime(time.time()))
     curr_month = time.strftime('%m', time.localtime(time.time()))
     curr_day = time.strftime('%d', time.localtime(time.time()))
