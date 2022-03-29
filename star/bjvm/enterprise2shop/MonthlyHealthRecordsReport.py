@@ -36,10 +36,13 @@ def get_enterprise_msg():
                v.region,
                v.record_num,
                d.code_name enterprise_type,
-               v.first_time
+               v.first_time,
+               dd.code_name qal_level
         from TR_RPT_ENTERPRISE_VERIFY v
         left join TR_RPT_ENTERPRISE_ADDRESS a on v.ENTERPRISE_ID = a.ENTERPRISE_ID
         left join tc_all_dict d on v.enterprise_type = d.code_value
+        left join tr_rpt_reput_eval_pk p on v.ENTERPRISE_ID = p.ENTERPRISE_ID and p.start_id = '8ca6d6612a7d455da1e41e496a8944fc'
+        left join tc_all_dict dd on p.qal_level = dd.code_value and dd.code_type = 'ZLXYDADJ'
         where v.COM_STATUS = 1
         """
     res = oracleUtil.get(sql)
@@ -74,6 +77,7 @@ if __name__ == '__main__':
         record_num = item[7]
         enterprise_type = item[8]
         first_time = item[9]
+        qal_level = item[10]
         first_time_str = ''
         area = ''
         try:
@@ -104,9 +108,12 @@ if __name__ == '__main__':
             store_lon = 0
         if store_lat is None:
             store_lat = 0
+        if qal_level is None:
+            qal_level = ''
 
         store_desc = '<p>' + enterprise_name + '</p><p>经营地址：' + jy_address + '</p><p>备案编号：' + record_num + \
-                     '</p><p>维修类型：' + enterprise_type + '</p><p>开业日期：' + first_time_str + '</p><p>业务电话：' + store_phone_str + '</p><p>上年度质量信誉考核：AAA</p>'
+                     '</p><p>维修类型：' + enterprise_type + '</p><p>开业日期：' + first_time_str + '</p><p>业务电话：' + \
+                     store_phone_str + '</p><p>上年度质量信誉考核：' + qal_level + '</p>'
 
         sql = sql + "(" + str(id) + ", 'stone', now(), 0, 'stone', now(), 0, 'OPEN', 'https://aaronwfbucket.oss-cn-beijing.aliyuncs.com/9df3868160d04c198642c12416ba5b08.png', '" + \
                 enterprise_name + "', '" + jy_address + "', concat('北京市,', '" + area + "'), '" + str(region_code) + "', '" + store_center + "', '" + \
